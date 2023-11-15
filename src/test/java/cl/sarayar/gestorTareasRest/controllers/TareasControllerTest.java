@@ -29,6 +29,10 @@ class TareasControllerTest {
         this.tareasController = new TareasController(tareasServiceMock);
     }
 
+    /**
+     * Tests that the find all method in the controller and returns the same size of list
+     * as the controller.
+     */
     @Test
     void testFindAllOk(){
         List<Tarea> tareasMock = Arrays.asList(new Tarea(), new Tarea());
@@ -36,7 +40,9 @@ class TareasControllerTest {
         List<Tarea> tareas = tareasController.getAll();
         assertEquals(2, tareas.size());
     }
-
+    /**
+     * Tests that the post method in the controller works OK and returns a status of 200.
+     */
     @Test
     void testPostOk(){
         Tarea tareaMock = new Tarea();
@@ -44,7 +50,9 @@ class TareasControllerTest {
         ResponseEntity<?> tarea = tareasController.save(tareaMock);
         assertEquals(HttpStatus.OK, tarea.getStatusCode());
     }
-
+    /**
+     * Tests that the update method in the controller works OK and returns a status of 200.
+     */
     @Test
     void testUpdatePostOk(){
         Tarea tareaMock = new Tarea();
@@ -54,7 +62,9 @@ class TareasControllerTest {
         ResponseEntity<?> tarea = tareasController.update(tareaMock);
         assertEquals(HttpStatus.OK, tarea.getStatusCode());
     }
-
+    /**
+     * Tests that the update method does not execute properly and returns a status code of 500.
+     */
     @Test
     void testUpdatePostNotOk(){
         Tarea tareaMock = new Tarea();
@@ -62,14 +72,20 @@ class TareasControllerTest {
         ResponseEntity<?> tarea = tareasController.update(tareaMock);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, tarea.getStatusCode());
     }
-
+    /**
+     * Tests that the delete method executes properly and returns a status code of 200.
+     * Condition is based on a boolean value, if true it should go through.
+     */
     @Test
     void testDeleteOk(){
         when(tareasServiceMock.remove(anyString())).thenReturn(Boolean.TRUE);
         ResponseEntity<?> tarea = tareasController.delete("1");
         assertEquals(HttpStatus.OK, tarea.getStatusCode());
     }
-
+    /**
+     * Tests that the delete method does not execute properly and returns a status code of 500.
+     * Condition is based on a random exception that triggers the Exception line.
+     */
     @Test
     void testDeleteNotOk(){
         when(tareasServiceMock.remove(anyString())).thenThrow(new NullPointerException());

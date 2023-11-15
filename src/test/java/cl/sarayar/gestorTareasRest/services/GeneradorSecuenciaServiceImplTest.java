@@ -21,7 +21,11 @@ class GeneradorSecuenciaServiceImplTest {
         MockitoAnnotations.openMocks(this);
         this.generadorSecuenciaService = new GeneradorSecuenciaServiceImpl(mongoOperationsMock);
     }
-
+    /**
+     * Tests that the method generadorSecuenciaOk assigns a number to the sequence, if the sequence is on a
+     * new object, should return the same number of seq in the new object.
+     * if object already exists, then should increase by 1 (i think not really sure :D)
+     */
     @Test
     void generadorSecuenciaOk(){
         Secuencia secuenciaMock = new Secuencia();

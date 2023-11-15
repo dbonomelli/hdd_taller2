@@ -23,7 +23,10 @@ class TareasModelListenerTest {
         MockitoAnnotations.openMocks(this);
         this.tareasModelListener = new TareasModelListener(generadorSecuenciaServiceMock);
     }
-
+    /**
+     * Tests that the method onBeforeConvert assigns a new identifier if the provided value of the
+     * mock is less than 1.
+     */
     @Test
     void testOnBeforeConvertOk(){
         Tarea tareaMock = new Tarea();

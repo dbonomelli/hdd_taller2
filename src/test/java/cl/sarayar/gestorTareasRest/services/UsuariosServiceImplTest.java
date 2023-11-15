@@ -41,9 +41,11 @@ class UsuariosServiceImplTest {
         assertEquals(mockUser, result);
 
     }
-
+    /**
+     * Tests if the find by id works ok, should return a list the same size as the mockUser List.
+     */
     @Test
-    void testFindUserListOk() {
+    void testUserListOk() {
         List<Usuario> mockUsers = Arrays.asList(new Usuario(), new Usuario());
         when(usuariosRepositoryMock.findAll()).thenReturn(mockUsers);
 
@@ -52,7 +54,9 @@ class UsuariosServiceImplTest {
         assertEquals(2, usuarios.size());
 
     }
-
+    /**
+     * Tests if the find by email works ok, should return the same mock object if found in an Optional.
+     */
     @Test
     void testFindUserByEmailOk() {
         Usuario mockUser = new Usuario();
@@ -60,21 +64,27 @@ class UsuariosServiceImplTest {
         Usuario user = usuariosService.findByCorreo("some@usm.cl");
         assertEquals(mockUser, user);
     }
-
+    /**
+     * Tests if the find by email is not found, should return the null if the object is not found.
+     */
     @Test
     void testFindUserByEmailNotOk(){
         when(usuariosRepositoryMock.findByCorreo(anyString())).thenReturn(Optional.empty());
         Usuario user = usuariosService.findByCorreo("some@usm.cl");
         assertNull(user);
     }
-
+    /**
+     * Tests if the find by id works ok, should return the same mock object if found.
+     */
     @Test
     void testFindUserByIdOk() {
         when(usuariosRepositoryMock.findById(anyString())).thenReturn(Optional.empty());
         Usuario user = usuariosService.findById("1");
         assertNull(user);
     }
-
+    /**
+     * Tests if the find by id is not found, should return the null if the object is not found.
+     */
     @Test
     void testFindUserByIdNotOk(){
         Usuario mock = new Usuario();
@@ -82,7 +92,10 @@ class UsuariosServiceImplTest {
         Usuario usuario = usuariosService.findById("1");
         assertNull(usuario.getId());
     }
-
+    /**
+     * Tests if the user details load OK by providing a mockUser and some username, if found, should return
+     * the object inside a casted userDetails object.
+     */
     @Test
     void testLoadUserByUsernameOk() {
         Usuario mockUser = new Usuario();
@@ -91,7 +104,10 @@ class UsuariosServiceImplTest {
         assertEquals(mockUser, userDetails.getUsuario());
 
     }
-
+    /**
+     * Tests if the user details load is not loaded by providing a mockUser and some username,
+     * if not found, should return a null inside a casted userDetails object.
+     */
     @Test
     void testLoadUserByUsernameNotOk() throws UsernameNotFoundException{
         when(usuariosRepositoryMock.findByCorreo(anyString())).thenReturn(Optional.empty());
@@ -99,7 +115,9 @@ class UsuariosServiceImplTest {
         assertNull(userDetails);
 
     }
-
+    /**
+     * Tests if you successfully find an email, if its found then exists turns true.
+     */
     @Test
     void testExistsByEmailOk(){
         when(usuariosRepositoryMock.existsByCorreo(anyString())).thenReturn(Boolean.TRUE);
