@@ -1,15 +1,12 @@
 package cl.sarayar.gestorTareasRest.config.auth.dto;
 
 import cl.sarayar.gestorTareasRest.entities.Usuario;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@Generated
 @NoArgsConstructor
 @AllArgsConstructor
 public class JwtResponse {
