@@ -10,6 +10,7 @@ import lombok.Setter;
 
 @Document(collection = "secuencias")
 @Getter
+@Generated
 @Setter
 @NoArgsConstructor
 public class Secuencia {

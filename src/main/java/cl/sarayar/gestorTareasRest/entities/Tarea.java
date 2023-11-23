@@ -20,6 +20,7 @@ import lombok.Setter;
 import lombok.ToString;
 @Getter
 @Setter
+@Generated
 @ToString
 @Document(collection = "tareas")
 public class Tarea {
